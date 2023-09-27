@@ -1,0 +1,483 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- title -->
+		<title>Megashop</title>
+		<meta name="description" content="modern, fully responsive, stylish, creative, ecommerce templates for suitable all ecommerce stores."/>
+		<meta name="keywords" content="modern, bootstrap, stylish, responsive, html5, fashion, furniture, mobile, watches, computers, computers accessories, toys, robotics toy, weightloss accessories"/>
+		<meta name="author" content="Spacingtech">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- favicon -->
+		<link rel="shortcut icon" type="image/favicon" href="{% static 'images/favicon.ico' %}">
+		<!-- animation -->
+		<link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+		<!-- owl slider -->
+		<link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/owl.theme.default.min.css' %}">
+		<!-- font awesome -->
+		<link rel="stylesheet" type="text/css" href="{% static 'css/fontawesome.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/all.min.css' %}">
+		<!-- bootstrap -->
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+		<!-- style -->
+		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+		<!-- responsive -->
+		<!-- custom css -->
+		<!--  -->
+		<link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}">
+		<!-- fontawesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link  href="{% static 'css/custom.css' %}" rel="stylesheet" type="text/css">
+		<!--[if IE]>
+		<script src="js/html5shiv.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<!-- header section starts -->
+		<header id="navbar" class="header-style1 position-absolute top-0 w-100 z-index-6 border-bottom-medium-dark">
+			<div class="navbar p-0 navbar-expand-lg navbar-dark">
+				<!-- logo starts -->
+				<div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-6 text-left">
+					<a class="navbar-brand mainlogo no-margin-right padding-10tb sm-padding-5px" href="index.html">
+						<img src="{% static 'images/logo.png' %}" alt="logo">
+					</a>
+				</div>
+				<!-- logo ends -->
+				<div class="col-xl-5 col-lg-4 col-md-8 col-sm-4 col-4 display-inline-block text-right d-none md-display-block sm-no-padding-right">
+					<!-- search starts -->
+					<div class="search display-inline-block padding-right-10px sm-display-none">
+						<input class="searchinline" type="text" placeholder="I Am Looking For...">
+						<i class="fas fa-search text-black position-relative right-25"></i>
+					</div>
+					<!-- search ends -->
+					<div class="sm-text-center display-inline-block padding-right-10px sm-no-padding-right padding-xs-right show-cart">
+						<a class="text-black new padding-top-20 padding-bottom-20px" href="{% url 'cart' %}" id="cart">
+							<i class="fas fa-shopping-bag text-sky-blue position-relative margin-right-5px text-medium2"></i>
+							<span class="bagtext text-transform-capitalize font-weight-600">{{cart_count}}<span class="ca-item">items</span></span>
+						</a> 
+						<!-- cart container starts -->
+						<div class="cartcontainer animated fadeIn cartcontainer-style1 text-left position-absolute">
+							<!-- header shopping cart starts --->
+							<div class="shopping-cart float-right shadow bg-white position-relative border-radius-5 paddingtwenty">
+								<div class="shopping-cart-header border-bottom-medium-dark padding-bottom-15px">
+									<i class="fas fa-shopping-bag cart-icon text-black title-medium line-height-0 margin-right-7px float-left"></i>
+									<span class="badge bg-sky-blue-light border-radius-5 text-white">{{cart_count}}</span>
+									<div class="shopping-cart-total float-right font-weight-600">
+										<span class="lighter-text">Total:</span>
+										<span class="main-color-text text text-red">aed {{total}}</span>
+									</div>
+								</div>
+								<!-- items lists starts -->
+								<ul class="shopping-cart-items padding-top-20px padding-left-0px">
+									<!-- cart item1 starts -->
+									<li class="clearfix list-style-none border-bottom-medium-dark padding-top-20px padding-bottom-20px">
+										
+											<div class="cart-img">
+												<img src="{{ cart_item.product.Images.url }}" alt="item1" class="float-left margin-right-12px"/>
+											</div>
+											<a href="product-details.html" class="item-name text-black font-weight-600 hoverstyle1 sm-text-medium">{{ cart_item.product.product_name }}</a>
+											<div class="item-price font-weight-600 margin-right-8px sm-text-large">aed {{ cart_item.product.price }} 
+												<span class="font-weight-500 text-brown text-small text-decoration-line-through margin-left-5px">$114.00</span>
+											</div>
+											<div class="item-quantity text-black text-uppercase font-weight-600 text-small sm-text-mdall">Quantity:
+												<span class="badge margin-left-5px padding-5px bg-sky-blue-light border-radius-5 text-white">{{ cart_item.quantity }}</span>
+											</div>
+										
+									</li>
+									
+									<!-- cart item1 ends--->
+								</ul>
+								<!-- items lists ends -->
+								<!-- checkout & cart page button starts -->
+								<div class="text-center padding-top-10px margin-bottom-10px">
+									<a href="checkout.html" class="button small-btn text-center margin-right-5px text-decoration-none d-inline hoverstyle1">Checkout</a>
+									<a href="{% url 'cart' %}" class="button small-btn text-center text-decoration-none d-inline hoverstyle1">View Cart</a>
+								</div>
+								<!-- checkout & cart page button ends -->
+							</div>
+							<!-- header shopping cart ends -->
+						</div>
+						<!-- cart container ends -->
+					</div>
+				</div>
+				<!-- navbar starts -->
+				<div class="col-xl-5 col-lg-6 col-md-1 col-sm-2 col-2">
+					<div class="text-center">
+						<button class="navbar-toggler outline-none cursor-pointer border-0 md-position-relative md-top-2 sm-left-5px" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+							<span class="line"></span>
+							<span class="line"></span>
+							<span class="line"></span>
+						</button>
+						<div class="collapse navbar-collapse cursor-pointer toggle md-position-fixed md-left-0 md-container-fluid letter-spacing-half" id="collapsibleNavbar">
+							<ul class="navbar-nav md-bgcolor-black mx-auto">
+								<!-- navbar home starts -->
+								<li class="md-border-bottom-medium-dark position-relative md-border-bottom-white padding-17px-tb padding-right-25px md-no-padding-tb lg-padding-right-20px md-textalign-left lg-text-medium md-container-fluid sm-text-large">
+									<a href="{% url 'home' %}" class="home md-padding-left-20px sm-text-large">Home</a>
+								</li>
+								<!-- navbar home ends -->
+								<!-- products starts -->
+								<li class="md-container-fluid position-relative md-border-bottom-white padding-right-25px lg-padding-right-20px padding-17px-tb md-no-padding-tb md-border-bottom-medium-dark md-textalign-left lg-text-medium">
+									<a href="{% url 'shop' %}" class="home md-padding-left-20px sm-text-large">Products</a>
+								</li>
+								<!-- products ends -->
+								<!-- categories starts -->
+								<li class="dropdown md-container-fluid md-border-bottom-white padding-17px-tb md-no-padding-tb padding-right-25px lg-padding-right-20px md-textalign-left lg-text-medium">
+									<a href="#" class="categories md-padding-left-20px sm-text-large">Categories</a>
+									<ul class="animated fadeIn dropdown-menu text-extra-medium" aria-labelledby="navbarDropdownMenuLink">
+										{% for category in links %}
+											<li><a class="dropdown-item" href="{{ category.get_url }}">{{ category.category_name }}</a></li>
+										{% endfor %}
+									</ul>
+								</li>
+								<!-- categories ends -->
+								<!-- pages starts -->
+								<!-- <li class="dropdown padding-right-25px lg-padding-right-20px md-container-fluid md-border-bottom-white padding-17px-tb md-no-padding-tb md-textalign-left lg-text-medium">
+									<a href="#" class="categories md-padding-left-20px sm-text-large">New</a>
+								</li> -->
+								<!-- pages ends -->
+								<!-- blogs starts -->
+								
+										
+								<!-- blogs ends -->
+								<!-- contact us starts -->
+								<li class="md-container-fluid padding-17px-tb md-no-padding-tb padding-right-25px lg-padding-right-20px md-textalign-left lg-text-medium">
+									<a class="md-padding-left-20px sm-text-large sm-padding-bottom-5px" href="{% url 'contact' %}">Contact</a>
+								</li>
+								<!-- contact us ends -->
+								<!-- Login starts -->
+								{% if user.id is None %}
+									<li class="dropdown padding-right-25px lg-padding-right-20px md-container-fluid md-border-bottom-white padding-17px-tb md-no-padding-tb md-textalign-left lg-text-medium">
+										<a href="{% url 'login' %}" class="categories md-padding-left-20px sm-text-large">Login</a>
+									</li> 
+									<!-- Login ends -->
+									<!-- Register starts -->
+									<li class="dropdown padding-right-25px lg-padding-right-20px md-container-fluid md-border-bottom-white padding-17px-tb md-no-padding-tb md-textalign-left lg-text-medium">
+										<a href="{% url 'register' %}" class="categories md-padding-left-20px sm-text-large">Sign Up</a>
+									</li>
+								<!-- Register ends -->
+								{% else %}
+									<li class="dropdown padding-right-25px lg-padding-right-20px md-container-fluid md-border-bottom-white padding-17px-tb md-no-padding-tb md-textalign-left lg-text-medium">
+										<a href="{% url 'logout' %}" class="categories md-padding-left-20px sm-text-large">Logout</a>
+									</li> 
+									<!-- Login ends -->
+									<!-- Register starts -->
+									<li class="dropdown padding-right-25px lg-padding-right-20px md-container-fluid md-border-bottom-white padding-17px-tb md-no-padding-tb md-textalign-left lg-text-medium">
+										<a href="{% url 'dashboard' %}" class="categories md-padding-left-20px sm-text-large">Dashboard</a>
+									</li>
+								{% endif %}
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- navbar ends -->
+
+				<div class="col-xl-5 col-lg-4 col-md-4 display-inline-block text-right md-display-none">
+					<!-- search starts -->
+					<form action="{% url 'search' %}" class="search display-inline-block padding-right-10px lg-position-relative lg-top10" method="GET">
+						<div class="search">
+							<input class="searchinline" type="text" placeholder="I Am Looking For..." name="keyword">
+							<i class="fas fa-search text-black position-relative right-25"></i>
+						</div>
+					</form>
+					<!-- search ends -->
+					<div class="sm-text-center display-inline-block padding-right-10px show-cart">
+						<!-- items starts -->
+						<a class="text-black new padding-top-20 padding-bottom-20px" href="{% url 'cart' %}">
+							<i class="fas fa-shopping-bag text-sky-blue position-relative margin-right-5px text-medium2"></i>
+							<span class="bagtext text-transform-capitalize font-weight-600">{{cart_count}}</span>
+						</a>
+						<!-- items ends -->
+						<!-- cart container starts -->
+						<div class="cartcontainer cartcontainer-style1 text-left position-absolute">
+							<!-- shopping cart starts -->
+							<div class="shopping-cart float-right shadow bg-white position-relative border-radius-5 paddingtwenty">
+								<div class="shopping-cart-header border-bottom-medium-dark padding-bottom-15px">
+									<i class="fas fa-shopping-bag cart-icon text-black title-medium line-height-0 margin-right-7px float-left"></i>
+									<span class="badge bg-sky-blue-light border-radius-5 text-white">{{ cart_count }}</span>
+									<div class="shopping-cart-total float-right font-weight-600">
+										<span class="lighter-text">Total:</span>
+										<span class="main-color-text text text-red">aed {{total}}</span>
+									</div>
+								</div>
+								<!-- items lists starts -->
+								
+								<ul class="shopping-cart-items padding-top-20px padding-left-0px">
+									<!-- cart item1 starts -->
+									<li class="clearfix list-style-none border-bottom-medium-dark padding-bottom-20px">
+										
+										<!-- <div class="cart-img">
+											<img src="{{ cart_item.product.Images.url }}" alt="item1" class="float-left margin-right-12px" style="width:50px; border-radius: 10px;"/>
+										</div>
+										<a href="product-details.html" class="item-name text-black font-weight-600 hoverstyle1 sm-text-medium">{{ cart_item.product.product_name }}</a> -->
+										<!-- <div class="item-price font-weight-600 margin-right-8px sm-text-large">aed {{ cart_item.product.price }} -->
+											<!-- <span class="font-weight-500 text-brown text-small text-decoration-line-through margin-left-5px">$610.00</span> -->
+										<!-- </div>
+										<div class="item-quantity text-black text-uppercase font-weight-600 text-small sm-text-mdall">Quantity:
+											<span class="badge margin-left-5px padding-5px bg-sky-blue-light border-radius-5 text-white">{{ cart_item.quantity }}</span>
+										</div> -->
+										
+									</li>
+									<!-- cart item1 ends -->
+									
+								</ul>
+								
+								<!-- items lists ends -->
+								<!-- checkout & cart page button starts -->
+								<div class="text-center padding-top-10px margin-bottom-10px">
+									<a href="checkout.html" class="button small-btn text-center margin-right-5px text-decoration-none d-inline hoverstyle1">Checkout</a>
+									<a href="{% url 'cart' %}" class="button small-btn text-center text-decoration-none d-inline hoverstyle1">View Cart</a>
+								</div>
+								<!-- checkout & cart page button ends -->
+							</div>
+							<!-- shopping cart ends -->
+						</div>
+						<!-- cart container ends -->
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- header section ends -->
+
+
+
+{% block content %}
+
+{% endblock %}
+
+<section class="footercontents padding-80px-tb bg-black">
+    <div class="container">
+        <div class="row paddingforfooter">
+            <div class="col-xl-3 col-lg-3 col-md-6 text-left sm-margin-bottom-20px">
+                <!-- footer logo starts -->
+                <img src="{% static 'images/logo.png' %}" alt="">
+                <!-- footer logo ends -->
+                <!-- footer description starts -->
+                <p class="padding-top-20px text-gray letter-spacing-half sm-text-large">Megashopapp is an online affiliate store which helps in selcting the right and the most lucrative products for people from all geographical background</p>
+                <!-- footer description ends -->
+                <div class="d-flex align-items-center">
+                    <!-- footer social icons starts -->
+                    <div class="social-icon display-inline-block title-small">
+                        <h5 class="main-font text-large font-weight-600 text-sky-blue">Follow Us</h5>
+                        <a href="https://web.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://plus.google.com/" target="_blank"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <!-- footer social icons ends -->
+                </div>
+            </div>
+            <!-- customer support section starts -->
+            <div class=" col-xl-3 col-lg-3 col-md-6 text-left sm-margin-bottom-10px md-margin-bottom-20px">
+                <!-- customer support starts -->
+                <div class="foot-customer letter-spacing-half sm-display-none">
+                    <h5 class="main-font text-large font-weight-600 text-sky-blue">Customer Support</h5>
+                    <a href="{% url 'login' %}" class="text-gray padding-top-20px hoverstyle1 d-block margin-bottom-15px">Track package</a>
+                    <a href="{% url 'login' %}" class="text-gray hoverstyle1 d-block margin-bottom-15px">Cancellation</a>
+                    <a href="{% url 'login' %}" class="text-gray hoverstyle1 d-block margin-bottom-15px">Faq’s</a>
+                    <a href="{% url 'login' %}" class="text-gray pt-0 hoverstyle1 d-block margin-bottom-15px">Privacy Policy</a>
+                    <a href="{% url 'login' %}" class="text-gray  hoverstyle1 d-block margin-bottom-15px">Location-map</a>
+                </div>
+                <!-- customer support ends -->
+                <!-- responsive customer support starts -->
+                <div class="panel-group panel bg-black-dark-rgba padding-10px border-radius-5 position-relative sm-padding-0px d-none sm-display-block sm-line-height-0" id="accordion1">
+                    <div class="panel-title text-large">
+                        <a data-toggle="collapse" data-parent="#accordion1" href="#collapse1" class="text-sky-blue collapsed main-font text-large font-weight-600 sm-no-letter-spacing sm-text-extra-large" aria-expanded="false">Customer Support
+                            <!-- plus icon starts -->
+                            <i class="fas fa-plus-circle position-absolute right-1p sm-right-3p sm-top-5px top-15"></i>
+                            <!-- plus icon ends -->
+                        </a>
+                    </div>
+                    <div id="collapse1" class="panel-collapse in collapse bg-black sm-no-letter-spacing sm-text-large">
+                        <a href="track-order.html" class="text-gray padding-top-30px hoverstyle1 d-block margin-bottom-30px">Track package</a>
+                        <a href="cancellation.html" class="text-gray hoverstyle1 d-block margin-bottom-30px">Cancellation</a>
+                        <a href="faq's.html" class="text-gray hoverstyle1 d-block margin-bottom-30px">Faq’s</a>
+                        <a href="privacy-policy.html" class="text-gray pt-0 hoverstyle1 d-block margin-bottom-30px">Privacy Policy</a>
+                        <a href="site-map.html" class="text-gray  hoverstyle1 d-block margin-bottom-30px">Sitemap</a>
+                    </div>
+                </div>
+                <!-- responsive customer support ends -->
+            </div>
+            <!-- customer support section ends -->
+            <!-- my account section starts -->
+            <div class="col-xl-3 col-lg-3 col-md-6 text-left foot-contact sm-margin-bottom-10px">
+                <!-- my account starts -->
+                <div class="foot-customer letter-spacing-half sm-display-none">
+                    <h5 class="main-font text-large font-weight-600 text-sky-blue">My Account</h5>
+                    <a href="{% url 'login' %}" class="text-gray padding-top-20px hoverstyle1 d-block margin-bottom-15px">Dashboard</a>
+                    <a href="{% url 'login' %}"class="text-gray hoverstyle1 d-block margin-bottom-15px">Order History</a>
+					<a href="{% url 'shop' %}"class="text-gray hoverstyle1 d-block margin-bottom-15px">Continue Shopping</a>
+                </div>
+                <!--  my account ends -->
+                <!-- responsive my account starts -->
+                <div class="panel-group	panel bg-black-dark-rgba padding-10px border-radius-5 position-relative sm-padding-0px sm-line-height-0" id="accordion2">
+                    <div class="panel-title text-large">
+                        <a data-toggle="collapse" data-parent="#accordion2" href="#collapse2" class="text-sky-blue collapsed main-font text-large font-weight-600 sm-no-letter-spacing d-none sm-display-block sm-text-extra-large" aria-expanded="false">My Account
+                            <!-- plus icon starts -->
+                            <i class="fas fa-plus-circle position-absolute right-1p sm-right-3p sm-top-5px top-15"></i>
+                            <!-- plus icon ends -->
+                        </a>
+                    </div>
+                    <div id="collapse2" class="panel-collapse in collapse bg-black sm-no-letter-spacing sm-text-large">
+                        <a href="{% url 'login' %}" class="text-gray padding-top-30px hoverstyle1 d-block margin-bottom-30px">Dashboard</a>
+                        <a href="{% url 'login' %}" class="text-gray hoverstyle1 d-block margin-bottom-30px">Order History</a>
+						<a href="{% url 'shop' %}" class="text-gray hoverstyle1 d-block margin-bottom-30px">Continue Shopping</a>
+                    </div>
+                </div>
+                <!-- responsive my account ends -->
+            </div>
+            <!-- my account section ends -->
+            <!-- store information section starts -->
+            <div class="col-xl-3 col-lg-3 col-md-6 text-left">
+                <!-- store information starts -->
+                <div class="foot-customer letter-spacing-half sm-display-none">
+                    <h5 class="main-font text-large font-weight-600 text-sky-blue">Store Information</h5>
+                    <div class="padding-top-10px">
+                        <div class="store-icon display-inline-block margin-right-5px">
+                            <i class="fas fa-map-marker-alt text-white display-table-cell-vertical-middle text-extra-large"></i>
+                        </div>
+                        <div class="display-inline-block text-gray padding-top-10px">Al Barsha Twin Tower A<br>United Arab Emirates</div>
+                    </div>
+                    <div class="padding-top-10px">
+                        <div class="store-icon display-inline-block margin-right-5px">
+                            <i class="fas fa-phone-volume text-white vertical-align-middle text-extra-large"></i>
+                        </div>
+                        <div class="display-inline-block ">
+                            <a href="tel:+971508466580" class="text-gray hoverstyle1 vertical-align-middle">+971508466580</a>
+                        </div>
+                    </div>
+                    <div class="padding-top-10px">
+                        <div class="store-icon display-inline-block margin-right-5px">
+                            <i class="far fa-envelope text-white vertical-align-middle text-extra-large"></i>
+                        </div>
+                        <div class="display-inline-block sm-no-letter-spacing">
+                            <a href="mailto:demo@demo.com" class="text-gray hoverstyle1 vertical-align-middle">info@megashopapp.com</a>
+                        </div>
+                    </div>
+                    <div class="padding-top-10px">
+                        <div class="store-icon display-inline-block margin-right-5px">
+                            <i class="fab fa-git text-white vertical-align-middle text-extra-large"></i>
+                        </div>
+                        <div class="display-inline-block ">
+                            <a href="mailto:demo@demo.com" class="text-gray hoverstyle1 vertical-align-middle">@github--joebuggy561</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- store information ends -->
+                <!-- responsive store information starts -->
+                <div class="panel-group	 panel bg-black-dark-rgba padding-10px border-radius-5 position-relative sm-padding-0px d-none sm-display-block" id="accordion3">
+                    <div class="panel-title text-large">
+                        <a data-toggle="collapse" data-parent="#accordion3" href="#collapse3" class="text-sky-blue collapsed main-font sm-no-letter-spacing text-large font-weight-600 text-sky-blue sm-text-extra-large" aria-expanded="false">Store Information
+                            <!-- plus icon starts -->
+                            <i class="fas fa-plus-circle position-absolute right-1p sm-right-3p sm-top-5px top-15"></i>
+                            <!-- plus icon ends -->
+                        </a>
+                    </div>
+                    <div id="collapse3" class="panel-collapse in collapse sm-no-letter-spacing bg-black sm-text-large">
+                        <div class="padding-top-10px">
+                            <div class="display-inline-block margin-right-5px">
+                                <i class="fas fa-map-marker-alt text-white display-table-cell-vertical-middle text-extra-large"></i>
+                            </div>
+                            <div class="display-inline-block text-gray padding-top-10px">Al Barsha Twin Tower A<br>United Arab Emirates</div>
+                        </div>
+                        <div class="padding-top-10px">
+                            <div class="display-inline-block margin-right-5px">
+                                <i class="fas fa-phone-volume text-white vertical-align-middle text-extra-large"></i>
+                            </div>
+                            <div class="display-inline-block">
+                                <a href="tel:+971508466580" class="text-gray hoverstyle1 vertical-align-middle">+971508466580</a>
+                            </div>
+                        </div>
+                        <div class="padding-top-10px">
+                            <div class="display-inline-block margin-right-5px">
+                                <i class="far fa-envelope text-white vertical-align-middle text-extra-large"></i>
+                            </div>
+                            <div class="display-inline-block">
+                                <a href="mailto:demo@demo.com" class="text-gray hoverstyle1 vertical-align-middle">info@megashopapp.com</a>
+                            </div>
+                        </div>
+                        <div class="padding-top-10px">
+                            <div class="display-inline-block margin-right-5px">
+                                <i class="fab fa-git text-white vertical-align-middle text-extra-large"></i>
+                            </div>
+                            <div class="display-inline-block">
+                                <a href="mailto:demo@demo.com" class="text-gray hoverstyle1 vertical-align-middle">@github--joebuggy561</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- responsive store information ends -->
+            </div>
+            <!-- store information section ends -->
+        </div>
+    </div>
+</section>
+<footer class="bg-sky-blue-light py-2">
+    <div class="container">
+        <div class="row ">
+            <!-- footer copyright texts starts -->
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 copy-right-content letter-spacing-half">
+                <span class="copyright text-white">Copyright <i class="far fa-copyright"></i> 2023  Megashop</span>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 letter-spacing-half text-right sm-text-center">
+                <div class="payment-icon display-inline-block">
+                    <a href="#">
+                        <i class="fab fa-cc-visa pr-2 socialhover-style1 text-white title-greatersmall"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fab fa-cc-mastercard pr-2 socialhover-style1 text-white title-greatersmall"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fab fa-cc-amazon-pay pr-2 socialhover-style1 text-white title-greatersmall"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fab fa-cc-paypal socialhover-style1 text-white title-greatersmall"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- footer copyright texts ends -->
+        </div>
+    </div>
+</footer>
+<!-- footer section ends -->
+<!-- javascript/jquery files -->
+<!-- jquery -->
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/jquery.instagramFeed.min.js' %}"></script>
+<!-- bootstrap -->
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<!-- owl carousal -->
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<!-- masonary -->
+<script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+<script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+<!-- countdown -->
+<script src="{% static 'js/jquery.appear.js' %}"></script>
+<script src="{% static 'js/counter.js'%}"></script>
+<!-- font awesome -->
+<script src="{% static 'js/fontawesome.min.js' %}"></script>
+<!-- range slider -->
+<script src="{% static 'js/rangeslider.min.js' %}"></script>
+<!-- wow animation -->
+<script src="{% static 'js/wow.min.js' %}"></script>
+<!-- custom -->
+<script src="{% static 'js/custom.js' %}"></script>
+<!-- font awesome scripts -->
+<script src='//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css'></script>
+<!-- pay pal scripts -->
+
+<!-- google recaptha -->
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+	function onSubmit(token) {
+	  document.getElementById("demo-form").submit();
+	}
+  </script>
+<!-- <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script> -->
+</body>
+</html>

@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'includes/breadcrum.html' %}
+
+		<!-- contact us section starts -->
+<section class="padding-80px-tb">
+	<div class="container">
+		<div class="row">
+			<!-- goolge map location starts -->
+			<div class="col-xl-6 col-md-6">
+				<div class="mapouter position-relative map-style1">
+					<div class="gmap_canvas">
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3612.6299317627518!2d55.20184670978922!3d25.11438553495932!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6b2ea52dca7f%3A0xd180f8504be52d!2sTwin%20Tower%20A%20Al%20Barsha%201!5e0!3m2!1sen!2sae!4v1685122542256!5m2!1sen!2sae" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+						<a href="https://www.pureblack.de"></a>
+						<i class="fas fa-2x fa-map-marker-alt text-black top-50p left-0 right-0 text-center position-absolute"></i>
+					</div>
+				</div>
+			</div>
+			<!-- goolge map location ends -->
+			<!--  company contact info starts -->
+			<div class="col-xl-6 col-md-6 d-flex sm-margin-top-20px">
+				<div class="border-radius-5 comment-form">
+					<!-- form starts -->
+					<form action="{% url 'contact' %}" method="POST">
+						{% csrf_token %}
+						{% include 'includes/alerts.html' %}
+						<div class="row">
+							<div class="col-xl-6 col-md-6 col-12 margin-bottom-10px">
+								<label for="exampleInputName" class="text-black">First Name</label>
+								<input class="form-control border-radius-5" id="exampleInputName" type="text" name="first_name" placeholder="Your first name">
+							</div>
+							<div class="col-xl-6 col-md-6 col-12 margin-bottom-10px">
+								<label for="exampleInputLname" class="text-black">Last Name</label>
+								<input class="form-control border-radius-5" id="exampleInputLname" type="text" name="last_name" placeholder="Your last name">
+							</div>
+							<div class="col-xl-6 col-md-6 col-12 margin-bottom-10px">
+								<label for="exampleInputEmail1" class="text-black">E-mail</label>
+								<input class="form-control border-radius-5" type="email" id="exampleInputEmail1" name="email" placeholder="Your email address">
+							</div>
+							<div class="col-xl-6 col-md-6 col-12 margin-bottom-15px">
+								<label for="exampleInputPhone" class="text-black">Phone No</label>
+								<input class="form-control border-radius-5" id="exampleInputPhone" type="tel" name="phone_number" placeholder="Phone no">
+							</div>
+							<div class="col-xl-12 col-md-12 commentstyle-1 margin-bottom-15px">
+								<input class="comment border-radius-5 form-control" name="description" placeholder="Write your comment">
+							</div>
+							<div class="col-xl-12 col-md-12 margin-bottom-15px">
+								<div class="text-left">
+									<button type ="submit"  class="btn btn-style1 hoverstyle1">Submit</button>
+								</div>
+							</div>
+						</div>
+					</form>
+					<!-- form ends -->
+					<div class="border-bottom-medium-dark margin-bottom-10px"></div>
+					<div class="row">
+						<div class="col-xl-12 col-lg-12 col-md-12">
+							<!-- contact info starts -->
+							<div class="contact-info">
+								<h5 class="font-weight-600 text-sky-blue text-large sm-text-extra-large">Contact Info</h5>
+								<p class="margin-bottom-10px sm-text-large sm-margin-bottom-10px">Al Barsha Twin Tower A 12, 9 Street ​Al Barsha 1, Hadaeq Mohammed Bin Rashid, Dubai.</p>
+							</div>
+							<!-- contact info ends -->
+							<div class="row">
+								<div class="col-md-12">
+									<div class="border-bottom-medium-dark margin-bottom-10px"></div>
+									<h5 class="font-weight-600 margin-bottom-10px text-large sm-text-extra-large">How we can help you?</h5>
+								</div>
+								<!-- email starts -->
+								<div class="col-xl-4 col-lg-4 col-md-12 border-right-medium-dark md-border-right-0px">
+									<div class="contact-icon">
+										<i class="far fa-envelope text-sky-blue vertical-align-middle text-extra-large"></i>
+									</div>
+									<div class="address">
+										<a href="mailto:demo@demo.com" class="text-black hoverstyle1 sm-text-large"><small>info@megashopapp.com</small></a>
+									</div>
+								</div>
+								<!-- email ends -->
+								<!-- phone starts -->
+								<div class="col-xl-4 col-lg-3 col-md-12 border-right-medium-dark md-border-right-0px">
+									<div class="contact-icon">
+										<i class="fas fa-phone-volume text-sky-blue text-extra-large"></i>
+									</div>
+									<div class="address">
+										<a href="tel:+971508466580" class="text-black hoverstyle1 sm-text-large"><small>+971508466580</small></a>
+									</div>
+								</div>
+								<!-- phone ends -->
+								<!-- location starts -->
+								<div class="col-xl-4 col-lg-5 col-md-12">
+									<div class="contact-icon">
+										<i class="fas fa-map-marker-alt text-sky-blue text-extra-large"></i>
+									</div>
+									<div class="address sm-text-large"><small>Al Barsha Twin Tower A United Arab Emirates</small></div>
+								</div>
+								<!-- location starts -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--  company contact info ends -->
+		</div>
+	</div>
+</section>
+		<!-- contact us section ends -->
+
+{% endblock %}

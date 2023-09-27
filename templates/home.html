@@ -1,0 +1,423 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+		<!-- slider starts -->
+		<section class="slider-style1 position-relative">
+			<div class="owl-carousel d-block" id="home-slider">
+				<!-- slider1 starts -->
+				<div class="item fullscreen cover-background lg-position-center md-right-65p-bottom sm-right-65p-bottom" style="background-image: url('{% static 'images/sliderimage1.jpg' %}');">
+					<div class="slidertext left-60p sm-left-50p width-30 position-absolute top-40p z-index-8 md-top-35p sm-top-35p">
+						<span class="font-weight-600 border-bottom-khaki text-black">Special Offers</span>
+						<h1 class="font-weight-800 title-extra-large-3 lg-title-extra-large-2 md-title-extra-large-1 margin-top-15px sm-title-extra-large margin-bottom-25px text-black">This Diwali Get Upto
+							<span class="text-sky-blue">50%</span> On Headphones
+						</h1>
+						<a href="product-details.html" class="btn-style1">Buy Now</a>
+					</div>
+				</div>
+				<!-- slider1 ends -->
+				<!-- slider2 starts -->
+				<div class="item fullscreen cover-background lg-position-center md-right-65p-bottom sm-right-65p-bottom" style="background-image: url('{% static 'images/sliderimage2.jpg' %}');">
+					<div class="slidertext left-60p sm-left-50p width-30 position-absolute top-40p z-index-8 md-top-35p sm-top-35p">
+						<span class="font-weight-600 border-bottom-khaki text-black">Special Offers</span>
+						<h1 class="font-weight-800 title-extra-large-3 lg-title-extra-large-2 md-title-extra-large-1 margin-top-15px sm-title-extra-large margin-bottom-25px text-black">All Shoes Flat
+						<span class="text-sky-blue">10%</span> Off On Christmas
+						</h1>
+						<a href="product-details.html" class="btn-style1">Buy Now</a>
+					</div>
+				</div>
+				<!-- slider2 ends -->
+				<!-- slider3 starts -->
+				<div class="item fullscreen cover-background lg-position-center md-right-65p-bottom sm-right-65p-bottom" style="background-image: url('{% static 'images/sliderimage3.jpg' %}');">
+					<div class="slidertext left-60p sm-left-50p width-30 position-absolute top-40p z-index-8 md-top-35p sm-top-35p">
+						<span class="font-weight-600 border-bottom-khaki text-black">Special Offers</span>
+						<h1 class="font-weight-800 title-extra-large-3 lg-title-extra-large-2 md-title-extra-large-1 margin-top-15px sm-title-extra-large margin-bottom-25px text-black">All Shoes Flat
+						<span class="text-sky-blue">10%</span> Off On Christmas
+						</h1>
+						<a href="product-details.html" class="btn-style1">Buy Now</a>
+					</div>
+				</div>
+				<!-- slider3 ends -->
+			</div>
+		</section>
+		<!-- slider ends -->
+		<!-- service section starts -->
+		<section class="padding-40px-tb bg-light-gray1">
+			<div class="container">
+				<div class="row service-section text-center">
+					<!-- sevice1 starts -->
+					<div class="col-xl-3 col-lg-3 col-md-3 col-6 service-content sm-margin-bottom-20px">
+						<div class="service-box">
+							<i class="fas fa-truck"></i>
+							<h6 class="servicetext text-black text-medium font-weight-600 main-font margin-top-10px sm-text-large">24*7 Home Delivery Service</h6>
+						</div>
+					</div>
+					<!-- sevice1 ends -->
+					<!-- sevice2 starts -->
+					<div class="col-xl-3 col-lg-3 col-md-3 col-6 service-content sm-margin-bottom-20px">
+						<div class="service-box">
+							<i class="fas fa-dollar-sign"></i>
+							<h6 class="servicetext text-black text-medium font-weight-600 main-font margin-top-10px sm-text-large">Your Money Is Safe With Us</h6>
+						</div>
+					</div>
+					<!-- sevice2 ends -->
+					<!-- sevice3 starts -->
+					<div class="col-xl-3 col-lg-3 col-md-3 col-6 service-content">
+						<div class="service-box">
+							<i class="far fa-check-circle"></i>
+							<h6 class="servicetext text-black text-medium font-weight-600 main-font margin-top-10px sm-text-large">Our Product Is 100% Authentic</h6>
+						</div>
+					</div>
+					<!-- sevice3 ends -->
+					<div class="col-xl-3 col-lg-3 col-md-3 col-6 service-content">
+						<div class="service-box">
+							<i class="fas fa-undo"></i>
+							<h6 class="servicetext text-black text-medium font-weight-600 main-font margin-top-10px sm-text-large">Free Returns Within 30 days</h6>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- service section ends -->
+		<!-- best deal section starts -->
+		<section class="padding-80px-tb best-deals-style1">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 center-col margin-bottom-40px lg-margin-bottom-30px md-margin-bottom-25px sm-margin-bottom-20px text-center">
+						<!-- best deals heading starts -->
+						<h3 class="font-weight-800 main-font text-transform lg-title-medium md-title-medium sm-title-mdmore">Featured Stock</h3>
+						<span class="md-text-large main-font font-weight-600 sm-text-large">Our Lastest Stock In</span>
+						<!-- best deals heading ends -->
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<!-- product1 starts -->
+					{% for product in products %}
+					<div class="col-xl-3 col-lg-3 col-md-3 col-6">
+						<div class="product-info">
+							<div class="content-overlay position-relative overflow-hidden">
+								<!-- product1 image starts -->
+								<div class="product-img color-bg-b text-center">
+									<a href="{{product.get_url}}"><img src="{{ product.Images.url }}" alt="" class="img-fluid"></a>
+								</div>
+								<!-- product1 image ends -->
+								<div class="content position-absolute opacity-none">
+									<!-- icons starts -->
+									<ul class="no-padding-left">
+										<li>
+											<a href="{% url 'add_cart' product.id %}" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block"><i class="fas fa-shopping-bag"></i></a>
+										</li>
+										<!-- <li>
+											<a href="{% static 'javascript:void(0)' %}" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+										</li> -->
+										<!-- <li>
+											<a href="wishlist.html" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block"><i class="fas fa-heart"></i></a>
+										</li> -->
+									</ul>
+									<!-- icons ends -->
+								</div>
+							</div>
+						</div>
+						<!-- quick view starts -->
+						
+						<!-- product1 description starts -->
+						<div class="protext text-center margin-top-10px">
+							<a href="{{product.get_url}}" class="d-inline-block text-dark-gray font-weight-600 hoverstyle1">{{ product.product_name }}</a>
+							<a href="{{product.get_url}}"><p class="pricetext font-weight-600" style="text-decoration: none;">aed {{ product.price }}</p></a>
+							<div class="rating">
+								<div class="rating-star">
+									<span  style="font-family: FontAwesome;">
+										<i class="fa fa-star{% if product.averageReview < 0.5%}-o{% elif product.averageReview >= 0.5 and product.averageReview < 1%}-half-o{% endif %}" aria-hidden="true"  style="font-family: FontAwesome; color: #ffb503;"></i>
+										<i class="fa fa-star{% if product.averageReview < 1.5%}-o{% elif product.averageReview >= 1.5 and product.averageReview < 2%}-half-o{% endif %}" aria-hidden="true"  style="font-family: FontAwesome; color: #ffb503;"></i>
+										<i class="fa fa-star{% if product.averageReview < 2.5%}-o{% elif product.averageReview >= 2.5 and product.averageReview < 3%}-half-o{% endif %}" aria-hidden="true"  style="font-family: FontAwesome; color: #ffb503;"></i>
+										<i class="fa fa-star{% if product.averageReview < 3.5%}-o{% elif product.averageReview >= 3.5 and product.averageReview < 4%}-half-o{% endif %}" aria-hidden="true"  style="font-family: FontAwesome; color: #ffb503;"></i>
+										<i class="fa fa-star{% if product.averageReview < 4.5%}-o{% elif product.averageReview >= 4.5 and product.averageReview < 5%}-half-o{% endif %}" aria-hidden="true"  style="font-family: FontAwesome; color: #ffb503;"></i>
+									</span> 
+								</div> 
+							</div>
+						</div>
+						<!-- product1 description ends -->
+					</div>
+					{% endfor %}
+					<!-- product1 ends -->
+					
+					<!-- product8 ends -->
+				</div>
+			</div>
+		</section>
+		<!-- best deal section ends -->
+		<!-- exclusive products section starts -->
+		<section class="padding-80px-tb exproducts-style1 border-top-medium-dark">
+			<div class="container">
+				<div class="row">
+					<!-- ex-products heading starts -->
+					<div class="col-lg-8 center-col margin-bottom-40px lg-margin-bottom-30px md-margin-bottom-25px sm-margin-bottom-20px text-center">
+						<h3 class="font-weight-800 main-font text-transform lg-title-medium md-title-medium sm-title-mdmore">All Products</h3>
+						<span class="md-text-large main-font font-weight-600 sm-text-large">All Products Less Than 100Aed!</span>
+					</div>
+					<!-- ex-products heading ends -->
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<!-- product1 starts -->
+					{% for product in products %}
+					<div class="col-xl-3 col-lg-3 col-md-3 col-6">
+						<div class="product-info">
+							<div class="content-overlay position-relative overflow-hidden">
+								<!-- product1 image starts -->
+								<div class="product-img color-bg-b text-center">
+									<a href="{{product.get_url}}"><img src="{{ product.Images.url }}" alt="" class="img-fluid"></a>
+								</div>
+								<!-- product1 image ends -->
+								<div class="content position-absolute opacity-none">
+									<!-- icons starts -->
+									<ul class="no-padding-left">
+										<li>
+											<a href="{% url 'add_cart' product.id %}" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block"><i class="fas fa-shopping-bag"></i></a>
+										</li>
+										<!-- <li>
+											<a href="{% static 'javascript:void(0)' %}" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+										</li> -->
+										<!-- <li>
+											<a href="wishlist.html" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block"><i class="fas fa-heart"></i></a>
+										</li> -->
+									</ul>
+									<!-- icons ends -->
+								</div>
+							</div>
+						</div>
+						<!-- quick view starts -->
+						
+						<!-- product1 description starts -->
+						<div class="protext text-center margin-top-10px">
+							<a href="{{product.get_url}}" class="d-inline-block text-dark-gray font-weight-600 hoverstyle1">{{ product.product_name }}</a>
+							<a href="{{product.get_url}}"><p class="pricetext font-weight-600" style="text-decoration: none;">aed {{ product.price }}</p></a>
+							<div class="rating">
+								<div class="rating-star">
+									<span  style="font-family: FontAwesome;">
+										<i class="fa fa-star{% if product.averageReview < 0.5%}-o{% elif product.averageReview >= 0.5 and product.averageReview < 1%}-half-o{% endif %}" aria-hidden="true"  style="font-family: FontAwesome; color: #ffb503;"></i>
+										<i class="fa fa-star{% if product.averageReview < 1.5%}-o{% elif product.averageReview >= 1.5 and product.averageReview < 2%}-half-o{% endif %}" aria-hidden="true"  style="font-family: FontAwesome; color: #ffb503;"></i>
+										<i class="fa fa-star{% if product.averageReview < 2.5%}-o{% elif product.averageReview >= 2.5 and product.averageReview < 3%}-half-o{% endif %}" aria-hidden="true"  style="font-family: FontAwesome; color: #ffb503;"></i>
+										<i class="fa fa-star{% if product.averageReview < 3.5%}-o{% elif product.averageReview >= 3.5 and product.averageReview < 4%}-half-o{% endif %}" aria-hidden="true"  style="font-family: FontAwesome; color: #ffb503;"></i>
+										<i class="fa fa-star{% if product.averageReview < 4.5%}-o{% elif product.averageReview >= 4.5 and product.averageReview < 5%}-half-o{% endif %}" aria-hidden="true"  style="font-family: FontAwesome; color: #ffb503;"></i>
+									</span> 
+								</div> 
+							</div>
+						</div>
+						<!-- product1 description ends -->
+					</div>
+					{% endfor %}
+					<!-- product1 ends -->
+					
+					<!-- product8 ends -->
+				</div>
+			</div>
+		</section>
+		<!-- exclusive products section ends -->
+		<!-- deal of the day section starts -->
+		<section class="padding-80px-tb dotd-style1 bg-light-gray1" style="background-image: url({% static 'images/deal-bg.jpg' %});">
+			<div class="container">
+				<div class="row">
+					<!-- product1 starts -->
+					<div class="col-xl-3 col-lg-3 col-md-3 col-6 deal-of-day-pro">
+						<div class="product-info">
+							<div class="content-overlay position-relative overflow-hidden">
+								<!-- product1 image starts -->
+								<div class="product-img color-bg-b text-center">
+									<img src="{% static 'images/deal-img1.jpg' %}" alt="" class="img-fluid">
+								</div>
+								<!-- product1 image ends -->
+								<div class="content position-absolute opacity-none">
+									<!-- icons starts -->
+									<ul class="no-padding-left">
+										<li>
+											<a href="cart-page.html" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block"><i class="fas fa-shopping-bag"></i></a>
+										</li>
+										<li>
+											<a href="{% static 'javascript:void(0)' %}" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+										</li>
+										<li>
+											<a href="wishlist.html" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block"><i class="fas fa-heart"></i></a>
+										</li>
+									</ul>
+									<!-- icons ends -->
+								</div>
+							</div>
+						</div>
+						<!-- product1 description starts -->
+						<div class="protext text-center margin-top-10px">
+							<a href="product-details.html" class="d-inline-block text-white font-weight-600 hoverstyle1">3D Headphone</a>
+							<p class="pricetext text-white no-margin-bottom font-weight-600">$50.00</p>
+						</div>
+						<!-- product1 description ends -->
+					</div>
+					<!-- product1 ends -->
+					<div class="col-xl-6 col-lg-6 col-md-6 col-12 timer">
+						<!-- deal of the day heading starts -->
+						<div class="center-col margin-bottom-40px lg-margin-bottom-30px padding-top-40px text-center md-padding-top-10px md-padding-bottom-25px md-no-margin-bottom sm-no-padding-top sm-padding-bottom-15px">
+							<h3 class="font-weight-800 main-font text-transform lg-title-medium md-title-medium sm-title-mdmore">Limited Stock</h3>
+							<span class="md-text-large main-font font-weight-600 sm-text-large">Times running out we Limited stock on this products</span>
+						</div>
+						<!-- deal of the day heading ends -->
+						<!-- timer starts -->
+						<div class="text-center timer-style1 md-padding-bottom-5px sm-padding-bottom-5px">
+							<div id="counter-event" data-enddate="2019/12/25 00:00:00" class="width-100">
+								<div class="counter-container">
+									<div class="counter-box first">
+										<div class="number">33</div>
+										<span>Days</span>
+									</div>
+									<div class="counter-box">
+										<div class="number">21</div>
+										<span>Hours</span>
+									</div>
+									<div class="counter-box">
+										<div class="number">21</div>
+										<span>Minutes</span>
+									</div>
+									<div class="counter-box last">
+										<div class="number">47</div>
+										<span>Seconds</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- timer ends -->
+						<div class="margin-top-40px lg-margin-top-30px md-no-padding-top md-no-margin-top text-center left-0 right-0 sm-title-middle">
+							<!-- offer description starts -->
+							<span class="text-white font-weight-600 sm-text-large">Hurry up it's today offers</span>
+							<!-- offer description ends -->
+						</div>
+					</div>
+					<!-- product2 starts -->
+					<div class="col-xl-3 col-lg-3 col-md-3 col-6 deal-of-day-pro">
+						<div class="product-info">
+							<div class="content-overlay position-relative overflow-hidden">
+								<!-- product2 image starts -->
+								<div class="product-img color-bg-b text-center">
+									<img src="{% static 'images/deal-img2.jpg' %}" alt="" class="img-fluid">
+								</div>
+								<!-- product2 image ends -->
+								<div class="content position-absolute opacity-none">
+									<!-- icons starts -->
+									<ul class="no-padding-left">
+										<li>
+											<a href="cart-page.html" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block"><i class="fas fa-shopping-bag"></i></a>
+										</li>
+										<li>
+											<a href="{% static 'javascript:void(0)' %}" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+										</li>
+										<li>
+											<a href="wishlist.html" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block"><i class="fas fa-heart"></i></a>
+										</li>
+									</ul>
+									<!-- icons ends -->
+								</div>
+							</div>
+						</div>
+						<!-- product2 description starts -->
+						<div class="protext text-center margin-top-10px">
+							<a href="product-details.html" class="d-inline-block text-white font-weight-600 hoverstyle1">Fancy Shoes</a>
+							<p class="pricetext text-white no-margin-bottom font-weight-600">aed 50.00</p>
+						</div>
+						<!-- product2 description ends -->
+					</div>
+					<!-- product2 ends -->
+				</div>
+			</div>
+		</section>
+		<!-- deal of the day section ends -->
+		<!-- best brands section starts -->
+		<section class="padding-80px-tb bestbrands border-bottom-medium-dark">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-xl-6 col-lg-6 col-md-12 b-brand text-center">
+						<div class="margin-bottom-40px lg-margin-bottom-30px md-margin-bottom-25px sm-margin-bottom-20px">
+							<!-- best brands heading starts -->
+							<h3 class="font-weight-800 main-font text-transform lg-title-medium md-title-medium sm-title-mdmore">Best Brands About Fashion</h3>
+							<span class="md-text-large main-font font-weight-600 sm-text-large">We Have The Best Brands Available For You</span>
+							<!-- best brands heading ends -->
+						</div>
+						<!-- brand icons starts -->
+						<div class="row best-brand">
+							<div class="col-xl-4 col-lg-4 col-md-4 col-6 best-brand-logo border-right-gray-1">
+								<div class="brand-icon text-center">
+									<img class="img-fluid" src="{% static 'images/brand-1.png' %}" alt="brand-icon">
+								</div>
+							</div>
+							<div class="col-xl-4 col-lg-4 col-md-4 col-6 best-brand-logo border-right-gray-1 sm-border-rigth-0">
+								<div class="brand-icon text-center">
+									<img class="img-fluid" src="{% static 'images/brand-2.png' %}" alt="brand-icon">
+								</div>
+							</div>
+							<div class="col-xl-4 col-lg-4 col-md-4 col-6 best-brand-logo sm-border-top-gray-1 sm-border-right-gray-1">
+								<div class="brand-icon text-center">
+									<img class="img-fluid" src="{% static 'images/brand-3.png' %}" alt="brand-icon">
+								</div>
+							</div>
+							<div class="col-xl-4 col-lg-4 col-md-4 col-6 best-brand-logo border-right-gray-1 border-top-gray-1 sm-border-rigth-0">
+								<div class="brand-icon text-center">
+									<img class="img-fluid" src="{% static 'images/brand-4.png' %}" alt="brand-icon">
+								</div>
+							</div>
+							<div class="col-xl-4 col-lg-4 col-md-4 col-6 best-brand-logo border-right-gray-1 border-top-gray-1">
+								<div class="brand-icon text-center">
+									<img class="img-fluid" src="{% static 'images/brand-5.png' %}" alt="brand-icon">
+								</div>
+							</div>
+							<div class="col-xl-4 col-lg-4 col-md-4 col-6 best-brand-logo border-top-gray-1">
+								<div class="brand-icon text-center">
+									<img class="img-fluid" src="{% static 'images/brand-6.png' %}" alt="brand-icon">
+								</div>
+							</div>
+						</div>
+						<!-- brand icons ends -->
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- best brands section starts -->
+		<!-- newsletter section starts -->
+		<section class="padding-80px-tb newsletterstyle-1">
+			<!-- newsletter heading starts -->
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-6 col-lg-6 col-md-6">
+						<div class="newsletter-offer-img">
+							<img src="{% static 'images/newsletter-img.jpg' %}" class="img-fluid border-radius-5">
+							<div class="newsletter-content">
+                                <h2 class="newsletter-subtitle">Limited time only</h2>
+                                <h3 class="newsletter-title">End of Season <br> Save 50% off</h3>
+                                <a href="#" class="btn btn-style1">Shop Now</a>
+                            </div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-12 text-center news-letter-section border-radius-5">
+						<div class="news-letter-content">
+							<h6 class="text-transform lg-title-medium md-title-medium sm-title-mdmore">NEWSLETTER & GET DISCOUNT 25% OFF</h6>
+							<span class="main-font sm-text-large d-block margin-bottom-40px lg-margin-bottom-30px md-margin-bottom-25px sm-margin-bottom-20px">Sign Up to our newsletter and get a 20% discount offer</span>
+							<div class="foremail">
+								<!-- email starts -->
+								<input class="email form-control display-inline-block sm-text-large" data-field="required" id="email" type="text" name="email" placeholder="Your E-mail Address">
+								<!-- email ends -->
+								<!-- subscribe button starts -->
+								<div>
+									<a id="subscribe-submit" href="javascript:void(0)" class="btn-style1 margin-top-20px display-inline-block">
+										<i class="fas fa-paper-plane pr-2"></i>Subscribe
+									</a>
+								</div>
+								<!-- subscribe button ends -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- newsletter heading ends -->
+		</section>
+		<!-- newsletter section ends -->
+		<!-- footer section starts -->
+	
+
+{% endblock %}

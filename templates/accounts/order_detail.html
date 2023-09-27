@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+{% include 'includes/breadcrum.html' %}
+<section class="padding-80px-tb order-complete">
+    <div class="container">
+               <!-- thank you heading starts -->
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="text-center padding-30px bg-gray border-radius-5 sm-padding-15px">
+                    <div class="heading-invoice">
+                        <i class="fas fa-check-circle fa-2x text-green title-small lg-text-extra-large md-title-mdall sm-text-extra-large"></i>
+                        <h5 class="font-weight-600 text-extra-large lg-text-large2 md-text-large sm-text-large">Your order id is : #{{ order.order_number }}</h5>
+                    </div>
+                    <div class="col">
+                        <!-- col-lg-6 start here -->
+                        <div class="invoice-from">
+                            <ul class="list-unstyled text-right">
+                                <li><strong>Invoiced To</strong></li>
+                                <li>{{ order.full_name }}</li>
+                                <li>{{ order.full_address }}</li>
+                                <li>{{ order.city }}, {{ order.state }}</li>
+                                <li>{{ order.country }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="invoice-details">
+                            <div class="well">
+                                <ul class="list-unstyled text-left">
+                                    <li><strong>Order</strong> #{{ order.order_number }}</li>
+                                    <li><strong>Transaction ID</strong> {{ order.payment.payment_id }}</li>
+                                    <li><strong>Order Date:</strong> {{ order.created_at }}</li>
+                                    <li><strong>Status:</strong> {{ order.payment.status }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive" style="overflow: hidden; outline: none;" tabindex="0">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th class="per70 text-center">Product</th>
+                                <th class="per5 text-center">Qty</th>
+                                <th class="per25 text-center">Total</th>
+                            </tr>
+                            </thead>
+                            {% for item in order_detail %}
+                            <tr>
+                                <td>{{ item.product.product_name }}
+                                    <p class="text-muted small">
+                                        {% if item.variations.all %}
+                                        {% for i in item.variations.all %}
+                                        {{ i.variation_category | capfirst }} : {{ i.variation_value | capfirst }} <br>
+                                        {% endfor %}
+                                        {% endif %}
+                                    <p>
+                                </td>
+                                <td class="text-center">{{ item.quantity }}</td>
+                                <td class="text-center">aed {{ item.product_price }}USD</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2" class="text-right"><strong>Subtotal</strong></td>
+                                    <td class="text-center">aed {{ subtotal }}</td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2" class="text-right"><strong>Tax</strong></th>
+                                    <td class="text-center">aed {{ order.tax }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2" class="text-right"><strong>Total</strong></td>
+                                    <td class="text-center">aed {{ order.order_total }}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="invoice-footer mt25">
+                        <p class="text-center">Thank you for shopping with us!</p>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+        <!-- thank you heading ends -->
+   
+            <!-- order placed starts -->
+
+    </div>
+</section>
+
+
+{% endblock %}

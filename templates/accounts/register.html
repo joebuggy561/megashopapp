@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'includes/breadcrum.html' %}
+<section class="padding-80px-tb">
+    <div class="container">
+        <div class="row sm-margin-left-right-0px">
+            <div class="col-lg-8 col-md-10 center-col col-12 sign-up-content border-radius-5">
+                <!-- sign in options starts -->
+                <div class="text-center">
+                    <a href="https://accounts.google.com" class="font-weight-600 text-black border-bottom-khaki text-extra-large md-title-mdall sm-text-extra-large">Sign Up</a>
+                </div>
+                {% include 'includes/alerts.html' %}
+                <div class="text-center margin-top-10px">
+                    <span class="font-weight-500 text-medium sm-text-large">Enter Your Details Below</span>
+                </div>
+                <!-- sign in options ends -->
+               
+
+                
+                    <div class="comment-form">
+                        <form action="{% url 'register' %}" method="POST">
+
+                            {% csrf_token %}
+                            <!-- form starts -->
+                            <div class="row">
+                                <div class="col-md-6 col-12" required>
+                                    <div class="form-group">
+                                        <label for="exampleInputName" class="sm-text-large">First Name</label>
+                                        {{ form.first_name}}
+                                        {{ form.first_name.errors}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12" required>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="sm-text-large">Last Name</label>
+                                        {{ form.last_name }}
+                                        {{ form.last_name.errors }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12" required>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword" class="sm-text-large" required>E-mail</label>
+                                        {{ form.email }}
+                                        <small><p>Our company has a strict policy when comes to sharing data with third parties</p></small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputCpassword" class="sm-text-large">Phone Number</label>
+                                        {{ form.phone_number }}
+                                        {{ form.phone_number.errors }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputCpassword" class="sm-text-large">Password</label>
+                                        {{ form.password}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputCpassword" class="sm-text-large">Confirm Password</label>
+                                        {{ form.confirm_password}}
+                                    </div>
+                                </div>
+                                {{form.email.errors }}
+                                {{ form.non_field_errors }}
+                                <div class="col-md-12">
+                                    <div class="sign-up">
+                                        <div class="text-left">
+                                            <button type="submit" class="btn btn-primary btn-block"> Sign up</button>
+                                        </div>
+                                        <div class="">
+                                            <a href="{% url 'login' %}" class="text-black sm-text-large">Do you already have an account?</a>
+                                        </div>
+                                    </div>
+                                    <div id="message">
+                                        <h6>Password must contain the following:</h6>
+                                        <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                                        <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                                        <p id="number" class="invalid">A <b>number</b></p>
+                                        <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </form>    <!-- form end -->
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+

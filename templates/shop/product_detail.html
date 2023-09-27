@@ -1,0 +1,577 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content%}
+<div class="quick-view">
+    <div class="modal popup-bg" id="myModal">
+        <div class="modal-dialog1">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="font-weight-800 main-font text-transform md-title-medium lg-title-medium sm-title-mdmore">Quick View</h3>
+                    <button type="button" class="close outline-none" data-dismiss="modal">
+                    <i class="fas fa-times-circle"></i>
+                    </button>
+                </div>
+                <!-- modal body starts -->
+                <div class="modal-body1">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                            <img src="{% static 'images/pro-detail-img2.jpg' %}" class="img-fluid border-radius-5" alt="">
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                            <!-- product name starts -->
+                            
+                            <!-- links ends  -->
+                        </div>
+                    </div>
+                </div>
+                <!-- modal body ends -->
+                <!-- <div class="clearfix"></div> -->
+                <!-- Modal footer starts -->
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn-style1" data-dismiss="modal">Close</button>
+                </div> -->
+                <!-- Modal footer ends -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- quick view ends -->
+<!-- breadcrumbs section starts -->
+{% include 'includes/breadcrum.html' %}
+<!-- breadcrumbs section ends -->
+<section class="padding-top-80px tilesstyle-1 tilestyle-2 lg-padding-top-40px md-padding-top-30px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-6">
+                <!-- product image starts -->
+                <div class="tiles height-400-px width-100 p-0 margin-bottom-20px sm-height-300-px">
+                    <div class="tile position-relative height-100 overflow-hidden" data-scale="1.6" data-image="{{ single_product.Images.url }}"></div>
+                </div>
+                <!-- product image ends -->
+                <!-- products other images starts -->
+                <div class="row margin-l-m-5px margin-r-m-5px">
+                    {% for i in product_gallery %}
+                    <div class="col-md-3 col-3 product-details-more padding-left-5px padding-right-5px">
+                        <img src="{{ i.image.url }}" alt="" class="img-fluid">
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- products' other images ends -->
+            </div>
+            <div class="col-md-12 col-lg-6 item-description-style1 md-margin-top-20px sm-margin-top-20px">
+                <form action="{%  url 'add_cart' single_product.id %}" method="POST">
+                    {% csrf_token %}
+                    <!-- product name starts -->
+                    <div class="produc-name-details margin-bottom-10px">
+                        <h6 class="d-inline-block title-small font-weight-600 lg-text-extra-large md-title-mdall sm-text-extra-large">{{ single_product.product_name }}</h6>
+                    </div>
+                    <!-- product name ends -->
+                    <!-- product price starts -->
+                    <div class="font-weight-600 text-large margin-bottom-10px md-text-large sm-text-large">aed {{ single_product.price }}
+                        <!-- <span class="text-decoration-line-through text-medium text-gray pl-2 md-text-medium sm-text-medium">$2750.00</span> -->
+                    </div>
+                    <!-- product price ends -->
+                    <!-- product ratings starts -->
+                    <div class="rating">
+                        <div class="rating-star">
+                            <span  style="font-family: FontAwesome;">
+                                <i class="fa fa-star{% if single_product.averageReview < 0.5%}-o{% elif single_product.averageReview >= 0.5 and single_product.averageReview < 1%}-half-o{% endif %}" aria-hidden="true"  style="font-family: FontAwesome; color: #ffb503;"></i>
+                                <i class="fa fa-star{% if single_product.averageReview < 1.5%}-o{% elif single_product.averageReview >= 1.5 and single_product.averageReview < 2%}-half-o{% endif %}" aria-hidden="true"  style="font-family: FontAwesome; color: #ffb503;"></i>
+                                <i class="fa fa-star{% if single_product.averageReview < 2.5%}-o{% elif single_product.averageReview >= 2.5 and single_product.averageReview < 3%}-half-o{% endif %}" aria-hidden="true"  style="font-family: FontAwesome; color: #ffb503;"></i>
+                                <i class="fa fa-star{% if single_product.averageReview < 3.5%}-o{% elif single_product.averageReview >= 3.5 and single_product.averageReview < 4%}-half-o{% endif %}" aria-hidden="true"  style="font-family: FontAwesome; color: #ffb503;"></i>
+                                <i class="fa fa-star{% if single_product.averageReview < 4.5%}-o{% elif single_product.averageReview >= 4.5 and single_product.averageReview < 5%}-half-o{% endif %}" aria-hidden="true"  style="font-family: FontAwesome; color: #ffb503;"></i>
+                            </span> 
+                            <span>{{ single_product.countReviews}} reviews</span>
+                        </div> 
+                    </div>
+                    <!-- product ratings ends -->
+                    <!-- product availablity starts -->
+                    <div class="product-availablity margin-bottom-10px sm-text-large">
+                        <span class="display-inline-block font-weight-600">Availablity:</span>
+                    {% if single_product.stock <= 0 %}
+                        <h3 class='text-danger'>Out of stock</h3>
+                    {% else %}
+                        <span class="display-inline-block font-weight-600 text-green">In Stocks</span>
+                    {% endif %}
+                    </div>
+                    <!-- product availablity ends -->
+                    <!-- product colors availablity starts -->
+                    <div class="colors-variation">
+                        <span class="d-inline-block font-weight-600">Colors Availablity:</span>
+                            <select name="color" class="form-control" style="width:100px" required>
+                                <option value="" disable selected>Select</option>
+                                {% for i in single_product.variation_set.colors %}
+                                    <option value="{{ i.variation_value | lower }}">{{ i.variation_value | capfirst }}</option>
+                                {% endfor %}
+                            </select>
+                    </div>
+                    <!-- product colors availablity ends -->
+                    <!-- product size start -->
+                    <div class="size d-block">
+                        <span class="d-inline-block font-weight-600 margin-right-5px">Size: </span>
+                            <select name="size" class="form-control" style="width:100px" required>
+                                <option value="" disable selected>Select</option>
+                                {% for i in single_product.variation_set.sizes %}
+                                    <option value="{{ i.variation_value | lower }}">{{ i.variation_value | capfirst }}</option>
+                                {% endfor %}
+                            </select>
+                    </div>
+                    <!-- product size end -->
+                    <div class="separator-border"></div>
+                    <!-- product description starts -->
+                    <div class="product-description">
+                        <span class="d-inline-block font-weight-600 margin-bottom-10px">Product Description </span>
+                        <p class="sm-text-large">{{ single_product.description }}</p>
+                    </div>
+                    <!-- product description ends -->
+                    <div class="separator-border"></div>
+                    <div class="d-inline-block margin-top-5px">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <!-- product qty starts -->
+                            <!-- <div class="display-inline-block">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <span class="font-weight-600 sm-text-large">Qty</span>
+                                </div>
+                            </div> -->
+                            <!-- <div class="qty-input qty-input-style1 ml-2 d-inline-block">
+                                <i class="less title-medium">-</i>
+                                <input type="text" value="2"/>
+                                <i class="more title-medium">+</i>
+                            </div><br> -->
+                            <!-- product qty ends -->
+                            <!-- product add to cart starts -->
+                            {% if single_product.stock <= 0 %}
+                                <div>
+                                    <h5 class="text-danger">Out of Stock</h5>
+                                </div>
+                            {% else %}
+                                <div class="d-inline-block">
+                                    <button type="submit" class="btn btn-style1 ml-2">
+                                    <i class="fas fa-shopping-bag pr-2"></i>ADD TO CART</button>
+                                </div>
+                            {% endif %}
+                            <!-- product add to cart ends -->
+                        </div>
+                        <!-- qty button endt -->
+                    </div>
+                    <div class="clearfix"></div>
+                    <!-- links starts  -->
+                    <div class="action-btn margin-top-15px">
+                        <a href="wishlist.html"><i class="far fa-heart text-black"></i>
+                            <span class="mt-2 hoverstyle1 font-weight-600 text-black-ni">Add To Wishlist</span>
+                        </a>
+                        <!-- <a href="product-comparision.html"><i class="fas fa-balance-scale text-black ml-3"></i>
+                            <span class="mt-2 hoverstyle1 font-weight-600 text-black-ni">Add To Compare</span>
+                        </a> -->
+                    </div>
+                    <!-- links ends -->
+                    <!-- product share start -->
+                    <!-- <div class="share d-inline-block">
+                        <label class="d-inline-block font-weight-600">Share with:</label>
+                        <div class="share-icon">
+                            <a href="https://www.facebook.com/" target="_blank" class="face-book" data-toggle="tooltip" title="facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com/" target="_blank" class="twitter" data-toggle="tooltip" title="twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="https://in.pinterest.com/" target="_blank" class="pinterest" data-toggle="tooltip" title="pinterest"><i class="fab fa-pinterest"></i></a>
+                            <a href="https://www.linkedin.com/" target="_blank" class="linkedin" data-toggle="tooltip" title="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div> -->
+                    <!-- product shares end -->
+                    <!-- <div class="separator-border"></div>
+                    <div class="d-block lg-text-mediumall margin-top-15px font-weight-600 sm-margin-top-5px"><i class="fas fa-users padding-right-5px text-sky-blue"></i>4 sellers Are Available For This Item.</div> -->
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- parallax section starts -->
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-md-12 padding-top-40px">
+            
+            <div class="parallax-style1 border-radius-5 fix-background height-300-px sm-height-200-px" style="background-image: url(images/pro-detail-parallex.jpg)">
+                <div class="position-absolute top-110px sm-top-60px left-0 right-0 m-auto text-white height-80-px width-80-px bg-sky-blue-light d-flex align-items-center justify-content-center border-radius-50 sm-height-60px sm-width-60px">
+                    <a href="https://www.youtube.com/watch?v=sCgLfUm77LE" target="_blank" class="text-white"><i class="fas fa-play title-large-1 sm-title-middle2"></i></a>
+                </div>
+                <h6 class="position-absolute font-weight-600 top-45p left-55p text-white md-left-60 sm-left-65px sm-top-40p sm-text-large">Introducing New</h6>
+            </div>
+            
+        </div>
+    </div>
+</div> -->
+<!-- parallax section ends -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-center sm-text-center">
+                <ul class="nav nav-pills nav-pills-style-1 margin-top-40px lg-margin-top-30px md-margin-top-25px sm-margin-top-20px sm-justify-content" role="tablist">
+                    <!-- description starts -->
+                    <li class="nav-item">
+                        <a class="nav-link text-black-ni active font-weight-600" data-toggle="pill" href="#desc">Description & Overview</a>
+                    </li>
+                    <!-- description ends -->
+                    <!-- customer review starts -->
+                    <li class="nav-item padding-left-10px sm-no-padding-left">
+                        <a class="nav-link text-black font-weight-600" data-toggle="pill" href="#cust">Customer Review</a>
+                    </li>
+                    <!-- customer review ends -->
+                    <!-- customer review starts -->
+                    <!-- <li class="nav-item padding-left-10px sm-no-padding-left">
+                        <a class="nav-link text-black font-weight-600" data-toggle="pill" href="#size-chart">Size Chart</a>
+                    </li> -->
+                    <!-- customer review ends -->
+                    <!-- customer review starts -->
+                    <li class="nav-item padding-left-10px sm-no-padding-left">
+                        <a class="nav-link text-black font-weight-600" data-toggle="pill" href="#top-review">Write Review</a>
+                    </li>
+                    <!-- customer review ends -->
+                </ul>
+            </div>
+            <div class="tab-content">
+                <!-- description section starts -->
+                <div class="margin-top-20px tab-pane active" id="desc">
+                    <p class="sm-text-large no-margin-bottom">{{ single_product.description }}</p>
+                </div>
+                <!-- description section ends -->
+                <!-- customer reviewstarts  -->
+                <div class="margin-top-20px tab-pane" id="cust">
+                    <div class="product-rating align-items-center">
+                        <div class="d-inline-block vertical-align-middle">
+                            <div class="d-inline-block position-relative bottom-4">
+                                <span class="font-weight-600 vertical-align-top">Best phone ever seen!</span>
+                            </div>
+                            <!-- rating star start -->
+                            <div class="rating">
+                                <div class="rating-star">
+                                    <span  style="font-family: FontAwesome;">
+                                        <i class="fa fa-star{% if single_product.averageReview < 0.5%}-o{% elif single_product.averageReview >= 0.5 and single_product.averageReview < 1%}-half-o{% endif %}" aria-hidden="true"  style="font-family: FontAwesome; color: #ffb503;"></i>
+                                        <i class="fa fa-star{% if single_product.averageReview < 1.5%}-o{% elif single_product.averageReview >= 1.5 and single_product.averageReview < 2%}-half-o{% endif %}" aria-hidden="true"  style="font-family: FontAwesome; color: #ffb503;"></i>
+                                        <i class="fa fa-star{% if single_product.averageReview < 2.5%}-o{% elif single_product.averageReview >= 2.5 and single_product.averageReview < 3%}-half-o{% endif %}" aria-hidden="true"  style="font-family: FontAwesome; color: #ffb503;"></i>
+                                        <i class="fa fa-star{% if single_product.averageReview < 3.5%}-o{% elif single_product.averageReview >= 3.5 and single_product.averageReview < 4%}-half-o{% endif %}" aria-hidden="true"  style="font-family: FontAwesome; color: #ffb503;"></i>
+                                        <i class="fa fa-star{% if single_product.averageReview < 4.5%}-o{% elif single_product.averageReview >= 4.5 and single_product.averageReview < 5%}-half-o{% endif %}" aria-hidden="true"  style="font-family: FontAwesome; color: #ffb503;"></i>
+                                    </span> 
+                                    <span>{{ single_product.countReviews}} reviews</span>
+                                </div> 
+                            </div>
+                            <!-- rating star endt-->
+                        </div>
+                        <div class="review-description">
+                            <i class="fas fa-quote-left text-sky-blue fa-1x"></i>
+                            <p class="sm-text-large">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+                        </div>
+                        <div class="blockquote-footer">Published on 28-june</div>
+                        <div class="review-name"><i class="far fa-user"></i> by Jd Kelin</div>
+                    </div>
+                </div>
+                    
+                <div class="tab-pane fade customer-top-review" id="top-review" role="tabpanel" aria-labelledby="review-top-tab">
+                    <form action="{% url 'submit_review' single_product.id %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                <div class="media">
+                                    <label>How do you rate</label>
+                                    <div class="media-body">
+                                        <div class="rating">
+                                            <div class="rate float-left">
+                                                <input type="radio" name="rating" id="rating10" value="5" required/><label for="rating10" title="5"></label>
+                                                <input type="radio" name="rating" id="rating9" value="4.5" required/><label for="rating9" title="4.5" class="half"></label>
+                                                <input type="radio" name="rating" id="rating8" value="4" required/><label for="rating8" title="4"></label>
+                                                <input type="radio" name="rating" id="rating7" value="3.5" required/><label for="rating7" title="3.5" class="half"></label>
+                                                <input type="radio" name="rating" id="rating6" value="3" required/><label for="rating6" title="3"></label>
+                                                <input type="radio" name="rating" id="rating5" value="2.5" required/><label for="rating5" title="2.5" class="half"></label>
+                                                <input type="radio" name="rating" id="rating4" value="2" required/><label for="rating4" title="2"></label>
+                                                <input type="radio" name="rating" id="rating3" value="1.5" required/><label for="rating3" title="1.5" class="half"></label>
+                                                <input type="radio" name="rating" id="rating2" value="1" required/><label for="rating2" title="1"></label>
+                                                <input type="radio" name="rating" id="rating1" value="0.5" required/><label for="rating1" title="0.5" class="half"></label>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{ single_product.averageReview }}
+                            <div class="col-md-12">
+                                <label for="review">Review Title</label>
+                                <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="review">Review Notes</label>
+                                <textarea class="form-control" name="review" placeholder="Write Your Testimonial Here" id="exampleFormControlTextarea1" rows="6" class="form-control"></textarea>
+                            </div>
+                            {% include 'includes/alerts.html' %}
+                            {% if user.is_authenticated %}
+                                {% if orderproduct %}
+                                    <div class="col-md-12">
+                                        <button class="btn btn-style1" type="submit">Submit</button>
+                                    </div>
+                                {% else %}
+                                    <p>You must purchase this product to post a review.</p>
+                                {% endif %}
+                            {% else %}
+                            <p>You must be logged in to post a review. <span><a href="{% url 'login'%}">Login now</a></span></p>
+                            {% endif %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="padding-bottom-80px lg-padding-top-40px md-padding-top-30px sm-display-none">
+    <!-- related products starts -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="margin-top-40px lg-margin-top-10px md-margin-top-10px sm-margin-top-20px padding-bottom-20px text-center">
+                    <!-- main heading starts -->
+                    <h5 class="d-inline-block border-bottom-khaki font-weight-600 main-font sm-text-extra-large">Related Products</h5>
+                    <!-- main heading ends -->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- product1 starts -->
+            <div class="col-xl-4 col-lg-4 col-md-4 col-12">
+                <div class="product-info">
+                    <div class="content-overlay position-relative overflow-hidden">
+                        <!-- product1 image starts -->
+                        <div class="product-img color-bg-b text-center">
+                            <img src="images/related-pro-img1.jpg" alt="" class="img-fluid">
+                            <div class="new-offer bg-green">New</div>
+                        </div>
+                        <!-- product1 image ends -->
+                        <div class="content position-absolute opacity-none">
+                            <!-- icons starts -->
+                            <ul class="no-padding-left">
+                                <li>
+                                    <a href="cart-page.html" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block"><i class="fas fa-shopping-bag"></i></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                                </li>
+                                <li>
+                                    <a href="wishlist.html" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block"><i class="fas fa-heart"></i></a>
+                                </li>
+                            </ul>
+                            <!-- icons ends -->
+                        </div>
+                    </div>
+                </div>
+                <!-- product1 description starts -->
+                <div class="protext text-center margin-top-10px">
+                    <a href="product-details.html" class="d-inline-block text-dark-gray font-weight-600 hoverstyle1">Daily Wear Shoes</a>
+                    <p class="pricetext font-weight-600">$700.00</p>
+                </div>
+                <!-- product1 description ends -->
+            </div>
+            <!-- product1 ends -->
+            <!-- product2 starts -->
+            <div class="col-xl-4 col-lg-4 col-md-4 col-12">
+                <div class="product-info">
+                    <div class="content-overlay position-relative overflow-hidden">
+                        <!-- product2 image starts -->
+                        <div class="product-img color-bg-b text-center">
+                            <img src="images/related-pro-img2.jpg" alt="" class="img-fluid">
+                        </div>
+                        <!-- product2 image ends -->
+                        <div class="content position-absolute opacity-none">
+                            <!-- icons starts -->
+                            <ul class="no-padding-left">
+                                <li>
+                                    <a href="cart-page.html" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block"><i class="fas fa-shopping-bag"></i></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                                </li>
+                                <li>
+                                    <a href="wishlist.html" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block"><i class="fas fa-heart"></i></a>
+                                </li>
+                            </ul>
+                            <!-- icons ends -->
+                        </div>
+                    </div>
+                </div>
+                <!-- product2 description starts -->
+                <div class="protext text-center margin-top-10px">
+                    <a href="product-details.html" class="d-inline-block text-dark-gray font-weight-600 hoverstyle1">Sports Gray Shoes</a>
+                    <p class="pricetext font-weight-600">$700.00</p>
+                </div>
+                <!-- product2 description ends -->
+            </div>
+            <!-- product2 ends -->
+            <!-- product3 starts -->
+            <div class="col-xl-4 col-lg-4 col-md-4 col-12">
+                <div class="product-info">
+                    <div class="content-overlay position-relative overflow-hidden">
+                        <!-- product3 image starts -->
+                        <div class="product-img color-bg-b text-center">
+                            <img src="images/related-pro-img3.jpg" alt="" class="img-fluid">
+                        </div>
+                        <!-- product3 image ends -->
+                        <div class="content position-absolute opacity-none">
+                            <!-- icons starts -->
+                            <ul class="no-padding-left">
+                                <li>
+                                    <a href="cart-page.html" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block"><i class="fas fa-shopping-bag"></i></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block" data-toggle="modal" data-target="#myModal"><i class="fas fa-eye"></i></a>
+                                </li>
+                                <li>
+                                    <a href="wishlist.html" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block"><i class="fas fa-heart"></i></a>
+                                </li>
+                            </ul>
+                            <!-- icons ends -->
+                        </div>
+                    </div>
+                </div>
+                <!-- product3 description starts -->
+                <div class="protext text-center margin-top-10px">
+                    <a href="product-details.html" class="d-inline-block text-dark-gray font-weight-600 hoverstyle1">Party Wear Shoes</a>
+                    <p class="pricetext font-weight-600">$700.00</p>
+                </div>
+                <!-- product3 description ends -->
+            </div>
+            <!-- product3 ends -->
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="row d-none sm-display-block">
+        <div class="col-md-12">
+            <div class="padding-top-40px lg-padding-top-40px md-padding-top-30px sm-padding-top-20px padding-bottom-20px text-center">
+                <!-- main heading starts -->
+                <h5 class="d-inline-block border-bottom-khaki font-weight-600 main-font sm-text-extra-large">Related Products</h5>
+                <!-- main heading ends -->
+            </div>
+        </div>
+        <div class="col-12 d-none sm-display-block">
+            <div id="pro-slider" class="owl-carousel">
+                <!-- responsive product1 starts -->
+                <div class="item">
+                    <div class="product-info">
+                        <div class="content-overlay position-relative overflow-hidden">
+                            <!-- product1 image starts -->
+                            <div class="product-img color-bg-b text-center">
+                                <img src="images/related-pro-img1.jpg" alt="" class="img-fluid">
+                                <div class="new-offer bg-green">New</div>
+                            </div>
+                            <!-- product1 image ends -->
+                            <div class="content bottom-30 position-absolute left-50p opacity-none">
+                                <!-- icons starts -->
+                                <div class="bg-white-light-rgba text-left product-details border-radius-15">
+                                    <div class="margin-left-5px margin-right-5px display-inline-block">
+                                        <a href="#" class="text-fast-gray text-medium2 hoverstyle1 line-height-34 d-block">
+                                            <i class="fas fa-shopping-bag"></i>
+                                        </a>
+                                    </div>
+                                    <div class="margin-left-5px margin-right-5px display-inline-block">
+                                        <a href="product-details.html" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block" data-toggle="modal" data-target="#myModal">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </div>
+                                    <div class="margin-left-5px margin-right-5px display-inline-block">
+                                        <a href="wishlist.html" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block">
+                                            <i class="fas fa-heart"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- icons ends -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- product1 description starts -->
+                    <div class="protext text-center margin-top-10px">
+                        <a href="product-details.html" class="d-inline-block text-dark-gray font-weight-600 hoverstyle1">Daily Wear Shoes</a>
+                        <p class="pricetext font-weight-600">$700.00</p>
+                    </div>
+                    <!-- product1 description ends -->
+                </div>
+                <!-- responsive product1 ends -->
+                <!-- responsive product2 starts -->
+                <div class="item">
+                    <div class="product-info">
+                        <div class="content-overlay position-relative overflow-hidden">
+                            <!-- product2 image starts -->
+                            <div class="product-img color-bg-b text-center">
+                                <img src="images/related-pro-img2.jpg" alt="" class="img-fluid">
+                            </div>
+                            <!-- product2 image ends -->
+                            <div class="content bottom-30 position-absolute left-50p opacity-none">
+                                <!-- icons starts -->
+                                <div class="bg-white-light-rgba text-left product-details border-radius-15">
+                                    <div class="margin-left-5px margin-right-5px display-inline-block">
+                                        <a href="#" class="text-fast-gray text-medium2 hoverstyle1 line-height-34 d-block">
+                                            <i class="fas fa-shopping-bag"></i>
+                                        </a>
+                                    </div>
+                                    <div class="margin-left-5px margin-right-5px display-inline-block">
+                                        <a href="product-details.html" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block" data-toggle="modal" data-target="#myModal">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </div>
+                                    <div class="margin-left-5px margin-right-5px display-inline-block">
+                                        <a href="wishlist.html" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block">
+                                            <i class="fas fa-heart"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- icons ends -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- product2 description starts -->
+                    <div class="protext text-center margin-top-10px">
+                        <a href="product-details.html" class="d-inline-block text-dark-gray font-weight-600 hoverstyle1">Sports Gray Shoes</a>
+                        <p class="pricetext font-weight-600">$700.00</p>
+                    </div>
+                    <!-- product2 description ends -->
+                </div>
+                <!-- responsive product2 ends -->
+                <!-- responsive product3 starts -->
+                <div class="item">
+                    <div class="product-info">
+                        <div class="content-overlay position-relative overflow-hidden">
+                            <!-- product3 image starts -->
+                            <div class="product-img color-bg-b text-center">
+                                <img src="images/related-pro-img3.jpg" alt="" class="img-fluid">
+                            </div>
+                            <!-- product3 image ends -->
+                            <div class="content bottom-30 position-absolute left-50p opacity-none">
+                                <!-- icons starts -->
+                                <div class="bg-white-light-rgba text-left product-details border-radius-15">
+                                    <div class="margin-left-5px margin-right-5px display-inline-block">
+                                        <a href="#" class="text-fast-gray text-medium2 hoverstyle1 line-height-34 d-block">
+                                            <i class="fas fa-shopping-bag"></i>
+                                        </a>
+                                    </div>
+                                    <div class="margin-left-5px margin-right-5px display-inline-block">
+                                        <a href="product-details.html" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block" data-toggle="modal" data-target="#myModal">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </div>
+                                    <div class="margin-left-5px margin-right-5px display-inline-block">
+                                        <a href="wishlist.html" class="text-fast-gray hoverstyle1 text-medium2 line-height-34 d-block">
+                                            <i class="fas fa-heart"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- icons ends -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- product3 description starts -->
+                    <div class="protext text-center margin-top-10px">
+                        <a href="product-details.html" class="d-inline-block text-dark-gray font-weight-600 hoverstyle1">Party Wear Shoes</a>
+                        <p class="pricetext font-weight-600">$700.00</p>
+                    </div>
+                    <!-- product3 description ends -->
+                </div>
+                <!-- responsive product3 ends -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

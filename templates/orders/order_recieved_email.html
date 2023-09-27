@@ -1,0 +1,15 @@
+{% autoescape off %}
+
+Hi {{ user.first_name }},
+
+YOUR ORDER HAS BEEN RECIEVED
+
+Thank you for taking time out to make an order with our site and if 
+this is not your please feel free to contact our customer service representative 
+we will sure be happy to help out with what ever assistance you need.
+
+Order Number: {{ order.order_number }}
+
+#you can add products and design to the order emails
+
+{% endautoescape %}

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load socialaccount %}
+{% block content %}
+{% include 'includes/breadcrum.html' %}
+		<!-- breadcrumbs section ends -->
+		<!-- sign in section starts -->
+<section class="padding-80px-tb">
+    {% if request.GET.command == 'verification' %}
+
+    <div class="card mx-auto alert alert-info text-center" style="max-width: 1250px; margin-top:100px;">
+    Thank you for registering with us we have sent a verification mail to your inbox {{request.GET.email}}
+    <br><br>
+    Already verified? <a href="{% url 'login' %}">Login</a>
+    </div>
+
+    {% else %}
+    <div class="container">
+        <div class="row sm-margin-left-right-0px">
+            <div class="col-lg-8 col-md-10 col-12 center-col gray-border sign-in-content border-radius-5">
+                <!-- sign in options starts -->
+                <div class="text-center">
+                    <div class="d-inline-block vertical-align-middle sm-display-none"></div>
+                        <a href="https://accounts.google.com" class="font-weight-600 border-bottom-khaki text-black text-extra-large md-title-mdall sm-text-extra-large">Sign In </a>
+                    <div class="d-inline-block vertical-align-middle sm-display-none"></div>
+                </div>
+                <div class="text-center margin-top-10px">
+                    <span class="font-weight-500 text-medium sm-text-large">Enter Your Details Below</span>
+                    {% for message in messages %}
+                        <div class="message {{ message.tags }}">
+                        {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+                <!-- sign in options ends -->
+                <div class="comment-form">
+                    {% include 'includes/alerts.html' %}
+                    <!-- form strats -->
+                    <form action="{% url 'login' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-12 col-12">
+                                <div class="margin-bottom-10px">
+                                    <label for="exampleInputName" class="sm-text-large">E-mail</label>
+                                    <input class="sm-margin-bottom-10px form-control border-radius-5 sm-text-large" id="exampleInputName" type="email" name="email" placeholder="Enter your user name">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-12">
+                                <div class="margin-bottom-15px">
+                                    <label for="exampleInputEmail1" class="sm-text-large">Password</label>
+                                    <input class="form-control border-radius-5 sm-text-large" id="exampleInputEmail1" type="password" name="password" placeholder="Enter your password">
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <div class="sign-button">
+                                    <div class="text-left margin-bottom-10px sm-margin-top-5px">
+                                        <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                                    </div>
+                                    <div class="margin-bottom-5px">
+                                        <a href="{% url 'forgotPassword' %}" class="text-black sm-text-large"><u>Forgot Password ?</u></a>
+                                    </div>
+                                </div>
+                                <div class="form-choice">
+                                    <p class="">Or Sign In With</p>
+                                    <div class="d-inline-block">
+                                        <a href="{% provider_login_url 'google' %}" class="btn btn-g-f">
+                                            <i class="fab fa-google"></i>
+                                            Login With Google
+                                        </a>
+                                    </div>
+                                    <div class="d-inline-block">
+                                        <a href="{% url 'register' %}" class="btn btn-g-f">
+                                            <i class="fab fa-users" style="font-family: FontAwesome;"></i>
+                                            Register Account
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- form ends -->
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</section>
+
+{% endblock%}
