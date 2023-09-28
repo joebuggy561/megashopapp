@@ -138,18 +138,21 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 #     }
 # }
 
-# DATABASE_URL= os.environ.get("DATABASE_URL")
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'railway',
-#         'USER': 'postgres',
-#         'PASSWORD': 'eFV2LCJH21BBIvYlIFZA',
-#         'HOST': 'containers-us-west-112.railway.app',
-#         'PORT': '5638',
-#         'DATABASE_URL':'postgresql://postgres:eFV2LCJH21BBIvYlIFZA@containers-us-west-112.railway.app:5638/railway',
-#     }
-# }
+DATABASE_URL= os.environ.get("DATABASE_URL")
+
+DATABASES = {
+    'default': {
+        'ENGINE': config('ENGINE'),
+        'NAME': config('NAME'),
+        'USER': config('USER'),
+        'PASSWORD': config('PASSWORD'),
+        'HOST': config('HOST'),
+        'PORT': config('PORT'),
+        'DATABASE_URL':config('DATABASE_URL'),
+
+   
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
